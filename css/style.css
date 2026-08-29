@@ -585,6 +585,13 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
 }
 .article .callout strong { color: var(--cream); }
 
+/* Scannable bullet list inside collapsible panels (keeps expanded content light) */
+.faq-a ul.pill-list { list-style: none; margin: 6px 0 10px; }
+.faq-a ul.pill-list li { position: relative; padding: 7px 0 7px 22px; color: var(--body); font-size: 15px; line-height: 1.55; }
+.faq-a ul.pill-list li::before { content: '—'; position: absolute; left: 0; color: var(--sage); }
+.faq-a ul.pill-list li strong { color: var(--cream); font-weight: 600; }
+.faq-a .mini-label { color: var(--sage); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; margin: 16px 0 2px; font-weight: 500; }
+
 /* =========================================================================
    RESPONSIVE
    ========================================================================= */
