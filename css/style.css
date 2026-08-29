@@ -434,6 +434,26 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
 .life-card h4 { font-size: 16px; color: var(--cream); margin-bottom: 8px; font-weight: 600; }
 .life-card p  { font-size: 13px; color: var(--sage-soft); line-height: 1.55; }
 
+/* who-we-serve: always-visible trait / asset panels (no click to expand) */
+.serve-block { max-width: 840px; margin: 0 auto; }
+.serve-panel {
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 30px 32px;
+  margin: 0 auto 22px;
+}
+.serve-panel > p { color: var(--dim); font-size: 15px; line-height: 1.65; margin: 0 0 4px; }
+.serve-block ul.pill-list { list-style: none; margin: 8px 0 4px; padding: 0; }
+.serve-block ul.pill-list li { position: relative; padding: 7px 0 7px 22px; color: var(--body); font-size: 15px; line-height: 1.55; }
+.serve-block ul.pill-list li::before { content: '—'; position: absolute; left: 0; color: var(--sage); }
+.serve-block ul.pill-list li strong { color: var(--cream); font-weight: 600; }
+.serve-block .mini-label { color: var(--sage); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; margin: 4px 0 2px; font-weight: 500; }
+.serve-block .pull-quote { margin-top: 14px; }
+.fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.fit-card { background: var(--panel-2); border: 1px solid var(--line); border-radius: 4px; padding: 26px 26px; }
+@media (max-width: 720px) { .fit-grid { grid-template-columns: 1fr; } }
+
 /* =========================================================================
    GIVING BACK — image cards
    ========================================================================= */
