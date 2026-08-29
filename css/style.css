@@ -424,35 +424,73 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
 /* =========================================================================
    WHO WE SERVE — life situations grid
    ========================================================================= */
-.life-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1040px; margin: 0 auto; }
+.life-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; max-width: 1080px; margin: 0 auto; }
 .life-card {
-  background: rgba(138,156,127,0.14);
-  border: 1px solid rgba(138,156,127,0.3);
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--sage-deep);
   border-radius: 4px;
-  padding: 24px 22px;
+  padding: 26px 24px 28px;
 }
-.life-card h4 { font-size: 16px; color: var(--cream); margin-bottom: 8px; font-weight: 600; }
-.life-card p  { font-size: 13px; color: var(--sage-soft); line-height: 1.55; }
+.life-card h4 { font-size: 15.5px; color: var(--cream); margin-bottom: 11px; font-weight: 600; line-height: 1.35; }
+.life-card p  { font-size: 13.5px; color: var(--sage-soft); line-height: 1.6; }
 
-/* who-we-serve: always-visible trait / asset panels (no click to expand) */
-.serve-block { max-width: 840px; margin: 0 auto; }
+/* who-we-serve: always-visible, airy panels (no click to expand) */
+.serve-block { max-width: 900px; margin: 0 auto; }
+
 .serve-panel {
   background: var(--panel-2);
   border: 1px solid var(--line);
+  border-left: 3px solid var(--sage-deep);
   border-radius: 4px;
-  padding: 30px 32px;
-  margin: 0 auto 22px;
+  padding: 40px 46px;
 }
-.serve-panel > p { color: var(--dim); font-size: 15px; line-height: 1.65; margin: 0 0 4px; }
-.serve-block ul.pill-list { list-style: none; margin: 8px 0 4px; padding: 0; }
-.serve-block ul.pill-list li { position: relative; padding: 7px 0 7px 22px; color: var(--body); font-size: 15px; line-height: 1.55; }
-.serve-block ul.pill-list li::before { content: '—'; position: absolute; left: 0; color: var(--sage); }
-.serve-block ul.pill-list li strong { color: var(--cream); font-weight: 600; }
-.serve-block .mini-label { color: var(--sage); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; margin: 4px 0 2px; font-weight: 500; }
-.serve-block .pull-quote { margin-top: 14px; }
-.fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.fit-card { background: var(--panel-2); border: 1px solid var(--line); border-radius: 4px; padding: 26px 26px; }
-@media (max-width: 720px) { .fit-grid { grid-template-columns: 1fr; } }
+.serve-panel > .intro { color: var(--body); font-size: 16px; line-height: 1.6; margin: 0 0 24px; }
+
+/* compact two-column trait list — short items, dot markers */
+.trait-list {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 15px 44px;
+}
+.trait-list li {
+  position: relative; padding-left: 20px;
+  color: var(--body); font-size: 15px; line-height: 1.5;
+}
+.trait-list li::before {
+  content: ''; position: absolute; left: 0; top: 8px;
+  width: 6px; height: 6px; border-radius: 50%; background: var(--sage);
+}
+.trait-list li strong { color: var(--cream); font-weight: 600; }
+
+.serve-quote {
+  margin: 28px 0 0; padding-top: 24px; border-top: 1px solid var(--line-soft);
+  color: var(--sage-soft); font-style: italic; font-size: 15.5px;
+  line-height: 1.65; text-align: center;
+}
+
+/* fit / not-a-fit cards — gentle color to break the monotone */
+.fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.fit-card { border-radius: 4px; padding: 32px 32px; }
+.fit-card.is-fit { background: rgba(138,156,127,0.12); border: 1px solid rgba(138,156,127,0.36); }
+.fit-card.is-not { background: var(--panel-2); border: 1px solid var(--line); }
+.fit-card .mini-label { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; margin: 0 0 16px; font-weight: 600; }
+.fit-card.is-fit .mini-label { color: var(--sage); }
+.fit-card.is-not .mini-label { color: var(--dim); }
+.fit-list { list-style: none; margin: 0; padding: 0; }
+.fit-list li {
+  position: relative; padding: 11px 0 11px 26px;
+  color: var(--body); font-size: 14.5px; line-height: 1.5;
+  border-top: 1px solid var(--line-soft);
+}
+.fit-list li:first-child { border-top: none; padding-top: 2px; }
+.fit-list li::before { position: absolute; left: 0; top: 11px; font-size: 12px; font-weight: 700; }
+.fit-card.is-fit .fit-list li:first-child::before,
+.fit-card.is-not .fit-list li:first-child::before { top: 2px; }
+.fit-card.is-fit .fit-list li::before { content: '✓'; color: var(--sage); }
+.fit-card.is-not .fit-list li::before { content: '✕'; color: var(--dim); }
+.fit-list li strong { color: var(--cream); font-weight: 600; }
+
+@media (max-width: 720px) { .trait-list, .fit-grid { grid-template-columns: 1fr; } }
 
 /* =========================================================================
    GIVING BACK — image cards
