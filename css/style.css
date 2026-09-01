@@ -322,9 +322,9 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
   text-align: center;
   box-shadow: 0 14px 34px rgba(0,0,0,0.28);
 }
-.thrive .eyebrow { margin-bottom: 26px; color: #1c2417; }
+.thrive .eyebrow { margin-bottom: 26px; color: #ffffff; }
 .thrive ul { list-style: none; max-width: 520px; margin: 0 auto; }
-.thrive li { color: #1f2718; padding: 12px 0; font-size: 16px; border-top: 1px solid rgba(28,36,23,0.16); }
+.thrive li { color: #ffffff; padding: 12px 0; font-size: 16px; border-top: 1px solid rgba(255,255,255,0.20); }
 .thrive li:first-child { border-top: none; }
 
 /* =========================================================================
@@ -483,7 +483,7 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
 .fit-card.is-fit { background: var(--sage-2); border: 1px solid var(--sage-2); }
 .fit-card.is-not { background: #2b2f27; border: 1px solid var(--line); }
 .fit-card .mini-label { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; margin: 0 0 16px; font-weight: 600; }
-.fit-card.is-fit .mini-label { color: #1c2417; font-weight: 700; }
+.fit-card.is-fit .mini-label { color: #ffffff; font-weight: 700; }
 .fit-card.is-not .mini-label { color: var(--sage-soft); }
 .fit-list { list-style: none; margin: 0; padding: 0; }
 .fit-list li {
@@ -495,12 +495,12 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
 .fit-list li::before { position: absolute; left: 0; top: 11px; font-size: 12px; font-weight: 700; }
 .fit-card.is-fit .fit-list li:first-child::before,
 .fit-card.is-not .fit-list li:first-child::before { top: 2px; }
-.fit-card.is-fit .fit-list li::before { content: '✓'; color: #1c2417; }
+.fit-card.is-fit .fit-list li::before { content: '✓'; color: #ffffff; }
 .fit-card.is-not .fit-list li::before { content: '✕'; color: var(--dim); }
 .fit-list li strong { color: var(--cream); font-weight: 600; }
-/* dark text inside the solid-sage "fit" card so it pops */
-.fit-card.is-fit .fit-list li { color: #1f2718; border-top-color: rgba(28,36,23,0.18); }
-.fit-card.is-fit .fit-list li strong { color: #0f150b; }
+/* white text inside the solid-sage "fit" card */
+.fit-card.is-fit .fit-list li { color: #ffffff; border-top-color: rgba(255,255,255,0.22); }
+.fit-card.is-fit .fit-list li strong { color: #ffffff; }
 .fit-card.is-not .fit-list li { color: var(--body); border-top-color: var(--line-soft); }
 
 @media (max-width: 720px) { .trait-list, .fit-grid { grid-template-columns: 1fr; } }
@@ -609,10 +609,10 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
 .expect-card.yes { background: var(--sage-2); }
 .expect-card.no  { background: #4a4d47; }
 .expect-card h3 { font-size: 18px; margin-bottom: 18px; font-weight: 700; }
-.expect-card.yes h3 { color: #12190c; }
+.expect-card.yes h3 { color: #ffffff; }
 .expect-card.no  h3 { color: #fbfaf5; }
 .expect-card ul { list-style: none; }
-.expect-card.yes li { color: #1f2718; }
+.expect-card.yes li { color: #ffffff; }
 .expect-card.no  li { color: #d7d9d2; }
 .expect-card li { padding: 6px 0; font-size: 15px; }
 
