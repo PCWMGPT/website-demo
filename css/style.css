@@ -7,24 +7,24 @@
 
 /* ---------- Design tokens ---------- */
 :root {
-  --ink:        #23261f;   /* main warm-charcoal background            */
-  --ink-2:      #26282a;   /* slightly cooler charcoal                 */
-  --forest:     #16221a;   /* deep forest green sections               */
-  --forest-2:   #17231a;
+  --ink:        #1d2a1c;   /* main deep-green background               */
+  --ink-2:      #22301f;   /* slightly lifted green                    */
+  --forest:     #16261a;   /* deep forest green sections               */
+  --forest-2:   #182a1c;
   --forest-deep:#0f1a13;   /* deepest green (image frames)             */
-  --panel:      #2b2f26;   /* bordered card fill on dark               */
-  --panel-2:    #20241c;
-  --line:       #3a3f36;   /* hairline borders                         */
-  --line-soft:  rgba(236,231,221,0.12);
-  --sage:       #8a9c7f;   /* primary sage accent                      */
-  --sage-2:     #7d8a72;
-  --sage-soft:  #a8b3a0;
-  --sage-deep:  #5a7a5e;
-  --cream:      #ECE7DD;   /* light headings / bright text             */
-  --body:       #c3cabb;   /* body copy on dark                        */
-  --dim:        #8f9689;   /* dim/secondary text, eyebrows             */
+  --panel:      #2c3b2a;   /* green card fill on dark (lifted)         */
+  --panel-2:    #253720;
+  --line:       #41503b;   /* hairline borders                         */
+  --line-soft:  rgba(236,231,221,0.14);
+  --sage:       #9cb389;   /* primary sage accent (more vivid)         */
+  --sage-2:     #86a077;   /* solid card fill                          */
+  --sage-soft:  #b6c4aa;
+  --sage-deep:  #6a8c62;
+  --cream:      #f1ede4;   /* light headings / bright text             */
+  --body:       #d5dcca;   /* body copy on dark (brighter)             */
+  --dim:        #a4ad95;   /* secondary text, eyebrows (brighter)      */
   --white:      #ffffff;
-  --strip:      #45473f;   /* client-logins grey strip                 */
+  --strip:      #3a4a37;   /* client-logins strip (green)              */
 
   --maxw: 1180px;
   --gap: 28px;
@@ -316,7 +316,7 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
 /* "who we work best with" boxed list */
 .thrive {
   max-width: 760px; margin: 0 auto;
-  background: #7d8a72;
+  background: #86a077;
   border-radius: 6px;
   padding: 48px 44px;
   text-align: center;
@@ -480,7 +480,7 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
 /* fit / not-a-fit cards — gentle color to break the monotone */
 .fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
 .fit-card { border-radius: 6px; padding: 36px 34px; box-shadow: 0 12px 30px rgba(0,0,0,0.26); }
-.fit-card.is-fit { background: #7d8a72; border: 1px solid #7d8a72; }
+.fit-card.is-fit { background: #86a077; border: 1px solid #86a077; }
 .fit-card.is-not { background: #2b2f27; border: 1px solid var(--line); }
 .fit-card .mini-label { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; margin: 0 0 16px; font-weight: 600; }
 .fit-card.is-fit .mini-label { color: #1c2417; font-weight: 700; }
