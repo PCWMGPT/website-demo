@@ -505,6 +505,18 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
 
 @media (max-width: 720px) { .trait-list, .fit-grid { grid-template-columns: 1fr; } }
 
+/* ideal client traits — two lighter-green boxes with bullets */
+.trait-intro { text-align: center; color: var(--cream); font-size: 16.5px; line-height: 1.6; max-width: 620px; margin: 0 auto 26px; }
+.trait-boxes { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; max-width: 900px; margin: 0 auto; }
+.trait-box { background: #86a077; border-radius: 8px; padding: 30px 30px; box-shadow: 0 12px 30px rgba(0,0,0,0.26); }
+.trait-box ul { list-style: none; margin: 0; padding: 0; }
+.trait-box li { position: relative; padding: 13px 0 13px 22px; color: #1f2718; font-size: 15px; line-height: 1.5; border-top: 1px solid rgba(28,36,23,0.18); }
+.trait-box li:first-child { border-top: none; padding-top: 2px; }
+.trait-box li::before { content: ''; position: absolute; left: 0; top: 21px; width: 6px; height: 6px; border-radius: 50%; background: #1c2417; }
+.trait-box li:first-child::before { top: 10px; }
+.trait-box li strong { color: #0f150b; font-weight: 700; }
+@media (max-width: 720px) { .trait-boxes { grid-template-columns: 1fr; } }
+
 /* =========================================================================
    GIVING BACK — image cards
    ========================================================================= */
@@ -557,17 +569,18 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
    ========================================================================= */
 .faq { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
 .faq-item {
-  background: var(--panel-2);
+  background: var(--panel);
   border: 1px solid var(--line);
   border-left: 3px solid transparent;
   border-radius: 8px;
   overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.16);
   transition: border-color .2s var(--ease), background .2s var(--ease), box-shadow .2s var(--ease);
 }
 .faq-item.open {
-  background: rgba(138,156,127,0.07);
+  background: #31422e;
   border-left-color: var(--sage);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.20);
+  box-shadow: 0 16px 34px rgba(0,0,0,0.26);
 }
 .faq-q {
   width: 100%; text-align: left; background: none; border: 0; cursor: pointer;
