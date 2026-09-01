@@ -397,19 +397,20 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
 .svc-intro p { color: var(--sage-soft); font-size: 18px; font-weight: 300; }
 .svc-cols { max-width: 820px; margin: 0 auto; }
 .svc-group { margin-bottom: 48px; }
-.svc-group .eyebrow { margin-bottom: 18px; }
+.svc-group .eyebrow { margin-bottom: 18px; color: var(--sage); }
 .svc-list { list-style: none; }
 .svc-list li {
-  padding: 17px 22px;
+  padding: 16px 22px;
   border: 1px solid var(--line);
+  border-left: 2px solid var(--sage);
   border-bottom: none;
   color: var(--body);
   font-size: 15.5px;
-  background: rgba(255,255,255,0.015);
+  background: var(--panel-2);
   transition: background .2s var(--ease), color .2s var(--ease);
 }
 .svc-list li:last-child { border-bottom: 1px solid var(--line); }
-.svc-list li:hover { background: rgba(138,156,127,0.1); color: var(--cream); }
+.svc-list li:hover { background: var(--panel); color: var(--cream); }
 .svc-note { text-align: center; color: var(--dim); font-size: 14px; margin-top: 34px; }
 
 /* services overview — process + 4 cards */
