@@ -429,8 +429,9 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
   background: rgba(138,156,127,0.12);
   border: 1px solid rgba(138,156,127,0.30);
   border-top: 2px solid var(--sage);
-  border-radius: 4px;
+  border-radius: 6px;
   padding: 30px 26px 32px;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.20);
 }
 .life-card h4 { font-size: 15.5px; color: var(--cream); margin-bottom: 13px; font-weight: 600; line-height: 1.35; }
 .life-card p  { font-size: 13.5px; color: var(--sage-soft); line-height: 1.65; }
@@ -439,11 +440,12 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
 .serve-block { max-width: 900px; margin: 0 auto; }
 
 .serve-panel {
-  background: rgba(138,156,127,0.11);
-  border: 1px solid rgba(138,156,127,0.28);
+  background: rgba(138,156,127,0.09);
+  border: 1px solid rgba(138,156,127,0.22);
   border-left: 3px solid var(--sage);
-  border-radius: 4px;
+  border-radius: 6px;
   padding: 46px 52px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.22);
 }
 .serve-panel > .intro { color: var(--cream); font-size: 16.5px; line-height: 1.65; margin: 0 0 28px; }
 
@@ -470,12 +472,12 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
 
 /* fit / not-a-fit cards — gentle color to break the monotone */
 .fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-.fit-card { border-radius: 4px; padding: 36px 34px; }
-.fit-card.is-fit { background: rgba(138,156,127,0.17); border: 1px solid rgba(138,156,127,0.44); }
-.fit-card.is-not { background: rgba(236,231,221,0.035); border: 1px solid var(--line); }
+.fit-card { border-radius: 6px; padding: 36px 34px; box-shadow: 0 12px 30px rgba(0,0,0,0.26); }
+.fit-card.is-fit { background: #7d8a72; border: 1px solid #7d8a72; }
+.fit-card.is-not { background: #2b2f27; border: 1px solid var(--line); }
 .fit-card .mini-label { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; margin: 0 0 16px; font-weight: 600; }
-.fit-card.is-fit .mini-label { color: var(--sage); }
-.fit-card.is-not .mini-label { color: var(--dim); }
+.fit-card.is-fit .mini-label { color: #1c2417; font-weight: 700; }
+.fit-card.is-not .mini-label { color: var(--sage-soft); }
 .fit-list { list-style: none; margin: 0; padding: 0; }
 .fit-list li {
   position: relative; padding: 13px 0 13px 26px;
@@ -486,9 +488,13 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
 .fit-list li::before { position: absolute; left: 0; top: 11px; font-size: 12px; font-weight: 700; }
 .fit-card.is-fit .fit-list li:first-child::before,
 .fit-card.is-not .fit-list li:first-child::before { top: 2px; }
-.fit-card.is-fit .fit-list li::before { content: '✓'; color: var(--sage); }
+.fit-card.is-fit .fit-list li::before { content: '✓'; color: #1c2417; }
 .fit-card.is-not .fit-list li::before { content: '✕'; color: var(--dim); }
 .fit-list li strong { color: var(--cream); font-weight: 600; }
+/* dark text inside the solid-sage "fit" card so it pops */
+.fit-card.is-fit .fit-list li { color: #1f2718; border-top-color: rgba(28,36,23,0.18); }
+.fit-card.is-fit .fit-list li strong { color: #0f150b; }
+.fit-card.is-not .fit-list li { color: var(--body); border-top-color: var(--line-soft); }
 
 @media (max-width: 720px) { .trait-list, .fit-grid { grid-template-columns: 1fr; } }
 
