@@ -493,6 +493,49 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
 @media (max-width: 720px) { .trait-list, .fit-grid { grid-template-columns: 1fr; } }
 
 /* =========================================================================
+   WHO WE SERVE — light "airy" body section
+   ========================================================================= */
+.bg-cream { background: #f4f1ea; }
+.serve-light .eyebrow { color: var(--sage-deep); }
+.serve-light .lead { color: #5c6353; }
+.serve-light .h-section, .serve-light h2 { color: #23261f; }
+
+.serve-light .serve-panel {
+  background: #ffffff;
+  border: 1px solid #e5e1d6;
+  border-left: 3px solid var(--sage);
+  box-shadow: 0 6px 24px rgba(35,38,31,0.05);
+}
+.serve-light .serve-panel > .intro { color: #4a5043; }
+.serve-light .trait-list li { color: #474d40; }
+.serve-light .trait-list li strong { color: #23261f; }
+.serve-light .trait-list li::before { background: var(--sage-deep); }
+.serve-light .serve-quote { color: #6b7360; border-top-color: #e8e4da; }
+
+.serve-light .fit-card.is-fit { background: #edf0e7; border: 1px solid #d4ddc9; box-shadow: none; }
+.serve-light .fit-card.is-not { background: #ffffff; border: 1px solid #e5e1d6; box-shadow: 0 6px 24px rgba(35,38,31,0.05); }
+.serve-light .fit-card.is-fit .mini-label { color: var(--sage-deep); }
+.serve-light .fit-card.is-not .mini-label { color: #8a8f80; }
+.serve-light .fit-list li { color: #474d40; border-top-color: #e8e4da; }
+.serve-light .fit-card.is-fit .fit-list li { border-top-color: #dbe2d0; }
+.serve-light .fit-list li strong { color: #23261f; }
+.serve-light .fit-card.is-fit .fit-list li::before { color: var(--sage-deep); }
+.serve-light .fit-card.is-not .fit-list li::before { color: #a8ac9d; }
+
+.serve-light .life-card {
+  background: #ffffff;
+  border: 1px solid #e5e1d6;
+  border-top: 2px solid var(--sage);
+  box-shadow: 0 6px 20px rgba(35,38,31,0.05);
+}
+.serve-light .life-card h4 { color: #23261f; }
+.serve-light .life-card p  { color: #5c6353; }
+.serve-light .life-card em { color: #6b7360; }
+.serve-light .svc-note { color: #7a8070; }
+.serve-light .link-arrow { color: var(--sage-deep); border-color: #cfd3c4; }
+.serve-light .link-arrow:hover { color: #23261f; border-color: var(--sage-deep); }
+
+/* =========================================================================
    GIVING BACK — image cards
    ========================================================================= */
 .give-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
