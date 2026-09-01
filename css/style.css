@@ -430,10 +430,10 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
   border: 1px solid var(--line);
   border-top: 2px solid var(--sage-deep);
   border-radius: 4px;
-  padding: 26px 24px 28px;
+  padding: 30px 26px 32px;
 }
-.life-card h4 { font-size: 15.5px; color: var(--cream); margin-bottom: 11px; font-weight: 600; line-height: 1.35; }
-.life-card p  { font-size: 13.5px; color: var(--sage-soft); line-height: 1.6; }
+.life-card h4 { font-size: 15.5px; color: var(--cream); margin-bottom: 13px; font-weight: 600; line-height: 1.35; }
+.life-card p  { font-size: 13.5px; color: var(--sage-soft); line-height: 1.65; }
 
 /* who-we-serve: always-visible, airy panels (no click to expand) */
 .serve-block { max-width: 900px; margin: 0 auto; }
@@ -443,18 +443,18 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
   border: 1px solid var(--line);
   border-left: 3px solid var(--sage-deep);
   border-radius: 4px;
-  padding: 40px 46px;
+  padding: 46px 52px;
 }
-.serve-panel > .intro { color: var(--body); font-size: 16px; line-height: 1.6; margin: 0 0 24px; }
+.serve-panel > .intro { color: var(--cream); font-size: 16.5px; line-height: 1.65; margin: 0 0 28px; }
 
 /* compact two-column trait list — short items, dot markers */
 .trait-list {
   list-style: none; margin: 0; padding: 0;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 15px 44px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px 52px;
 }
 .trait-list li {
-  position: relative; padding-left: 20px;
-  color: var(--body); font-size: 15px; line-height: 1.5;
+  position: relative; padding-left: 22px;
+  color: var(--body); font-size: 15px; line-height: 1.6;
 }
 .trait-list li::before {
   content: ''; position: absolute; left: 0; top: 8px;
@@ -470,7 +470,7 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
 
 /* fit / not-a-fit cards — gentle color to break the monotone */
 .fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-.fit-card { border-radius: 4px; padding: 32px 32px; }
+.fit-card { border-radius: 4px; padding: 36px 34px; }
 .fit-card.is-fit { background: rgba(138,156,127,0.12); border: 1px solid rgba(138,156,127,0.36); }
 .fit-card.is-not { background: var(--panel-2); border: 1px solid var(--line); }
 .fit-card .mini-label { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; margin: 0 0 16px; font-weight: 600; }
@@ -478,8 +478,8 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
 .fit-card.is-not .mini-label { color: var(--dim); }
 .fit-list { list-style: none; margin: 0; padding: 0; }
 .fit-list li {
-  position: relative; padding: 11px 0 11px 26px;
-  color: var(--body); font-size: 14.5px; line-height: 1.5;
+  position: relative; padding: 13px 0 13px 26px;
+  color: var(--body); font-size: 14.5px; line-height: 1.55;
   border-top: 1px solid var(--line-soft);
 }
 .fit-list li:first-child { border-top: none; padding-top: 2px; }
@@ -491,49 +491,6 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
 .fit-list li strong { color: var(--cream); font-weight: 600; }
 
 @media (max-width: 720px) { .trait-list, .fit-grid { grid-template-columns: 1fr; } }
-
-/* =========================================================================
-   WHO WE SERVE — light "airy" body section
-   ========================================================================= */
-.bg-cream { background: #f4f1ea; }
-.serve-light .eyebrow { color: var(--sage-deep); }
-.serve-light .lead { color: #5c6353; }
-.serve-light .h-section, .serve-light h2 { color: #23261f; }
-
-.serve-light .serve-panel {
-  background: #ffffff;
-  border: 1px solid #e5e1d6;
-  border-left: 3px solid var(--sage);
-  box-shadow: 0 6px 24px rgba(35,38,31,0.05);
-}
-.serve-light .serve-panel > .intro { color: #4a5043; }
-.serve-light .trait-list li { color: #474d40; }
-.serve-light .trait-list li strong { color: #23261f; }
-.serve-light .trait-list li::before { background: var(--sage-deep); }
-.serve-light .serve-quote { color: #6b7360; border-top-color: #e8e4da; }
-
-.serve-light .fit-card.is-fit { background: #edf0e7; border: 1px solid #d4ddc9; box-shadow: none; }
-.serve-light .fit-card.is-not { background: #ffffff; border: 1px solid #e5e1d6; box-shadow: 0 6px 24px rgba(35,38,31,0.05); }
-.serve-light .fit-card.is-fit .mini-label { color: var(--sage-deep); }
-.serve-light .fit-card.is-not .mini-label { color: #8a8f80; }
-.serve-light .fit-list li { color: #474d40; border-top-color: #e8e4da; }
-.serve-light .fit-card.is-fit .fit-list li { border-top-color: #dbe2d0; }
-.serve-light .fit-list li strong { color: #23261f; }
-.serve-light .fit-card.is-fit .fit-list li::before { color: var(--sage-deep); }
-.serve-light .fit-card.is-not .fit-list li::before { color: #a8ac9d; }
-
-.serve-light .life-card {
-  background: #ffffff;
-  border: 1px solid #e5e1d6;
-  border-top: 2px solid var(--sage);
-  box-shadow: 0 6px 20px rgba(35,38,31,0.05);
-}
-.serve-light .life-card h4 { color: #23261f; }
-.serve-light .life-card p  { color: #5c6353; }
-.serve-light .life-card em { color: #6b7360; }
-.serve-light .svc-note { color: #7a8070; }
-.serve-light .link-arrow { color: var(--sage-deep); border-color: #cfd3c4; }
-.serve-light .link-arrow:hover { color: #23261f; border-color: var(--sage-deep); }
 
 /* =========================================================================
    GIVING BACK — image cards
