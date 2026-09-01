@@ -426,9 +426,9 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
    ========================================================================= */
 .life-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; max-width: 1080px; margin: 0 auto; }
 .life-card {
-  background: var(--panel-2);
-  border: 1px solid var(--line);
-  border-top: 2px solid var(--sage-deep);
+  background: rgba(138,156,127,0.12);
+  border: 1px solid rgba(138,156,127,0.30);
+  border-top: 2px solid var(--sage);
   border-radius: 4px;
   padding: 30px 26px 32px;
 }
@@ -439,9 +439,9 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
 .serve-block { max-width: 900px; margin: 0 auto; }
 
 .serve-panel {
-  background: var(--panel-2);
-  border: 1px solid var(--line);
-  border-left: 3px solid var(--sage-deep);
+  background: rgba(138,156,127,0.11);
+  border: 1px solid rgba(138,156,127,0.28);
+  border-left: 3px solid var(--sage);
   border-radius: 4px;
   padding: 46px 52px;
 }
@@ -471,8 +471,8 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
 /* fit / not-a-fit cards — gentle color to break the monotone */
 .fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
 .fit-card { border-radius: 4px; padding: 36px 34px; }
-.fit-card.is-fit { background: rgba(138,156,127,0.12); border: 1px solid rgba(138,156,127,0.36); }
-.fit-card.is-not { background: var(--panel-2); border: 1px solid var(--line); }
+.fit-card.is-fit { background: rgba(138,156,127,0.17); border: 1px solid rgba(138,156,127,0.44); }
+.fit-card.is-not { background: rgba(236,231,221,0.035); border: 1px solid var(--line); }
 .fit-card .mini-label { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; margin: 0 0 16px; font-weight: 600; }
 .fit-card.is-fit .mini-label { color: var(--sage); }
 .fit-card.is-not .mini-label { color: var(--dim); }
