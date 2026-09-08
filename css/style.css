@@ -517,6 +517,11 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
 .trait-box li strong { color: #ffffff; font-weight: 700; }
 @media (max-width: 720px) { .trait-boxes { grid-template-columns: 1fr; } }
 
+/* plain question list (risk-management "questions this page will answer") */
+.serve-block > ul.pill-list { list-style: none; padding: 0; }
+.serve-block > ul.pill-list li { position: relative; padding: 9px 0 9px 22px; color: var(--body); font-size: 15px; line-height: 1.55; }
+.serve-block > ul.pill-list li::before { content: '—'; position: absolute; left: 0; color: var(--sage); }
+
 /* =========================================================================
    GIVING BACK — image cards
    ========================================================================= */
