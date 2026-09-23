@@ -546,6 +546,8 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
 }
 .res-doc:hover { color: var(--cream); padding-left: 14px; }
 .res-doc .type { font-size: 12px; letter-spacing: .12em; color: var(--sage); text-transform: uppercase; }
+.res-cat { color: var(--sage); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; margin: 24px 0 2px; }
+.res-cat:first-of-type { margin-top: 6px; }
 .res-side .eyebrow { margin-bottom: 16px; }
 .res-side + .res-side { margin-top: 42px; }
 .res-links { list-style: none; }

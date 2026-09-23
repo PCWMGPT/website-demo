@@ -2,23 +2,20 @@
 """
 SharePoint -> website sync (Pointer Creek).
 
-Reads documents from the SharePoint "Pointer Creek Web Content" site via the
-Microsoft Graph API, downloads them into ./docs/ with fixed URLs, and rebuilds
-the document list on resources.html plus sitemap.xml and llms.txt so the files
-are downloadable and discoverable by Google / AI crawlers.
+Publishes the documents listed in sharepoint_map.json from the
+"Pointer Creek Web Content" SharePoint site: downloads each into ./docs/,
+then rebuilds the Resources page document list (grouped by section),
+sitemap.xml, and llms.txt. Only files named in the map are published;
+everything else in the library is ignored.
 
-It is intended to run in GitHub Actions on a schedule; it commits nothing itself
-(the workflow commits any changes it produces).
+Runs in GitHub Actions on a schedule.
 
-Required environment variables (set as GitHub Actions secrets):
-  SP_TENANT_ID       Entra ID (Azure AD) tenant id (GUID)
-  SP_CLIENT_ID       App registration (client) id
-  SP_CLIENT_SECRET   App registration client secret
-
-Optional (have sensible defaults for this site):
-  SP_HOSTNAME   default: pointercreek.sharepoint.com
-  SP_SITE_PATH  default: /sites/Websitecontent
-  SP_LIBRARY    default: Documents        (the document library / drive name)
+Required secrets (env):  SP_TENANT_ID, SP_CLIENT_ID, SP_CLIENT_SECRET
+Optional config (env):   SP_HOSTNAME (default pointercreek.sharepoint.com),
+                         SP_SITE_PATH (default /sites/Websitecontent),
+                         SP_LIBRARY  (default Documents)
+Dry run (no SharePoint): SP_DRYRUN=1  -> renders the page layout from the map
+                         alone, with placeholder /docs/<slug>.pdf links.
 """
 
 import os
@@ -30,22 +27,21 @@ import pathlib
 import requests
 
 GRAPH = "https://graph.microsoft.com/v1.0"
-
 HOSTNAME = os.environ.get("SP_HOSTNAME", "pointercreek.sharepoint.com")
 SITE_PATH = os.environ.get("SP_SITE_PATH", "/sites/Websitecontent")
 LIBRARY = os.environ.get("SP_LIBRARY", "Documents")
+DRYRUN = os.environ.get("SP_DRYRUN") == "1"
 
-ROOT = pathlib.Path(__file__).resolve().parent.parent   # repo root
+ROOT = pathlib.Path(__file__).resolve().parent.parent
 DOCS_DIR = ROOT / "docs"
 RESOURCES = ROOT / "resources.html"
 SITEMAP = ROOT / "sitemap.xml"
 LLMS = ROOT / "llms.txt"
+MAP_FILE = ROOT / "sharepoint_map.json"
 SITE_URL = "https://www.pointercreek.com"
 
-TYPE_LABEL = {
-    ".pdf": "PDF", ".docx": "DOCX", ".doc": "DOC", ".xlsx": "XLSX",
-    ".xls": "XLS", ".pptx": "PPTX", ".csv": "CSV", ".txt": "TXT",
-}
+TYPE_LABEL = {".pdf": "PDF", ".docx": "DOCX", ".doc": "DOC", ".xlsx": "XLSX",
+              ".xls": "XLS", ".pptx": "PPTX", ".csv": "CSV", ".txt": "TXT"}
 
 
 def die(msg):
@@ -53,22 +49,28 @@ def die(msg):
     sys.exit(1)
 
 
+def load_map():
+    if not MAP_FILE.exists():
+        die("sharepoint_map.json not found.")
+    m = json.loads(MAP_FILE.read_text(encoding="utf-8"))
+    return m.get("documents", {}), m.get("_section_order", [])
+
+
+def slugify(title, ext):
+    s = re.sub(r"[^A-Za-z0-9]+", "-", title).strip("-").lower()
+    return f"{s}{ext.lower()}"
+
+
 def get_token():
-    tid = os.environ.get("SP_TENANT_ID")
-    cid = os.environ.get("SP_CLIENT_ID")
-    sec = os.environ.get("SP_CLIENT_SECRET")
+    tid, cid, sec = (os.environ.get(k) for k in
+                     ("SP_TENANT_ID", "SP_CLIENT_ID", "SP_CLIENT_SECRET"))
     if not (tid and cid and sec):
         die("Missing SP_TENANT_ID / SP_CLIENT_ID / SP_CLIENT_SECRET secrets.")
     r = requests.post(
         f"https://login.microsoftonline.com/{tid}/oauth2/v2.0/token",
-        data={
-            "client_id": cid,
-            "client_secret": sec,
-            "scope": "https://graph.microsoft.com/.default",
-            "grant_type": "client_credentials",
-        },
-        timeout=30,
-    )
+        data={"client_id": cid, "client_secret": sec,
+              "scope": "https://graph.microsoft.com/.default",
+              "grant_type": "client_credentials"}, timeout=30)
     if r.status_code != 200:
         die(f"Token request failed ({r.status_code}): {r.text}")
     return r.json()["access_token"]
@@ -81,96 +83,94 @@ def g(session, url):
     return r.json()
 
 
-def slugify(name):
-    stem, ext = os.path.splitext(name)
-    stem = re.sub(r"[^A-Za-z0-9]+", "-", stem).strip("-").lower()
-    return f"{stem}{ext.lower()}"
-
-
-def list_files(session, drive_id, item_id="root", prefix=""):
-    """Recursively list files in a drive folder."""
+def list_files(session, drive_id, item_id="root"):
     out = []
     url = f"{GRAPH}/drives/{drive_id}/items/{item_id}/children?$top=200"
     while url:
         data = g(session, url)
         for it in data.get("value", []):
             if it.get("folder"):
-                out += list_files(session, drive_id, it["id"], prefix + it["name"] + "/")
+                out += list_files(session, drive_id, it["id"])
             elif it.get("file"):
                 out.append(it)
         url = data.get("@odata.nextLink")
     return out
 
 
-def main():
+def collect_from_sharepoint(mapping):
     token = get_token()
     s = requests.Session()
     s.headers["Authorization"] = f"Bearer {token}"
-
-    # 1) resolve the site
     site = g(s, f"{GRAPH}/sites/{HOSTNAME}:{SITE_PATH}")
-    site_id = site["id"]
-    print(f"Site: {site.get('displayName')}  ({site_id})")
-
-    # 2) find the document library (drive) by name, else default drive
-    drives = g(s, f"{GRAPH}/sites/{site_id}/drives").get("value", [])
-    drive = next((d for d in drives if d.get("name", "").lower() == LIBRARY.lower()), None)
-    if not drive:
-        drive = g(s, f"{GRAPH}/sites/{site_id}/drive")
+    print(f"Site: {site.get('displayName')}")
+    drives = g(s, f"{GRAPH}/sites/{site['id']}/drives").get("value", [])
+    drive = next((d for d in drives if d.get("name", "").lower() == LIBRARY.lower()),
+                 None) or g(s, f"{GRAPH}/sites/{site['id']}/drive")
     drive_id = drive["id"]
-    print(f"Library: {drive.get('name')}  ({drive_id})")
-
-    # 3) list + download files
-    files = list_files(s, drive_id)
     DOCS_DIR.mkdir(exist_ok=True)
     entries = []
-    for f in files:
+    for f in list_files(s, drive_id):
         name = f["name"]
+        if name not in mapping:
+            continue                      # only publish mapped files
+        meta = mapping[name]
         ext = os.path.splitext(name)[1].lower()
-        if ext not in TYPE_LABEL:
-            print(f"  skip (unsupported type): {name}")
-            continue
-        local = slugify(name)
+        local = slugify(meta["title"], ext)
         dl = f.get("@microsoft.graph.downloadUrl")
         if not dl:
-            item = g(s, f"{GRAPH}/drives/{drive_id}/items/{f['id']}")
-            dl = item.get("@microsoft.graph.downloadUrl")
-        content = requests.get(dl, timeout=120).content
-        (DOCS_DIR / local).write_bytes(content)
-        title = os.path.splitext(name)[0]
-        entries.append({"title": title, "file": local, "type": TYPE_LABEL[ext]})
-        print(f"  downloaded: {name} -> docs/{local}  ({len(content)//1024} KB)")
+            dl = g(s, f"{GRAPH}/drives/{drive_id}/items/{f['id']}").get("@microsoft.graph.downloadUrl")
+        (DOCS_DIR / local).write_bytes(requests.get(dl, timeout=180).content)
+        entries.append({"title": meta["title"], "section": meta["section"],
+                        "file": local, "type": TYPE_LABEL.get(ext, ext.upper().strip("."))})
+        print(f"  {name} -> docs/{local}")
+    return entries
 
-    entries.sort(key=lambda e: e["title"].lower())
-    print(f"{len(entries)} document(s) published.")
 
-    # 4) rebuild the resources.html document list between markers
-    rebuild_resources(entries)
+def collect_dryrun(mapping):
+    entries = []
+    for name, meta in mapping.items():
+        ext = os.path.splitext(name)[1].lower()
+        entries.append({"title": meta["title"], "section": meta["section"],
+                        "file": slugify(meta["title"], ext),
+                        "type": TYPE_LABEL.get(ext, "PDF")})
+    return entries
+
+
+def main():
+    mapping, order = load_map()
+    entries = collect_dryrun(mapping) if DRYRUN else collect_from_sharepoint(mapping)
+    print(f"{len(entries)} document(s).")
+    rebuild_resources(entries, order)
     update_sitemap(entries)
-    update_llms(entries)
-    print("Done.")
+    update_llms(entries, order)
+    print("Done." + (" (dry run)" if DRYRUN else ""))
 
 
-def rebuild_resources(entries):
+def grouped(entries, order):
+    secs = {}
+    for e in entries:
+        secs.setdefault(e["section"], []).append(e)
+    ordered = [s for s in order if s in secs] + [s for s in secs if s not in order]
+    for s in ordered:
+        yield s, sorted(secs[s], key=lambda e: e["title"].lower())
+
+
+def rebuild_resources(entries, order):
     if not RESOURCES.exists():
         return
-    txt = RESOURCES.read_text(encoding="utf-8")
-    if entries:
-        rows = ["          <!-- SP-DOCS:START --><!-- Auto-generated from SharePoint. Do not edit by hand. -->"]
-        for e in entries:
-            t = html.escape(e["title"])
+    rows = ["          <!-- SP-DOCS:START --><!-- Auto-generated from SharePoint. Do not edit by hand. -->"]
+    for section, docs in grouped(entries, order):
+        rows.append(f'          <p class="res-cat">{html.escape(section)}</p>')
+        for e in docs:
             rows.append(
                 f'          <a class="res-doc" href="docs/{e["file"]}">'
-                f'<span>{t}</span><span class="type">{e["type"]} ↓</span></a>'
-            )
-        rows.append("          <!-- SP-DOCS:END -->")
-        block = "\n".join(rows)
-    else:
-        block = ('          <!-- SP-DOCS:START -->\n'
-                 '          <!-- SP-DOCS:END -->')
-    new = re.sub(r"<!-- SP-DOCS:START -->.*?<!-- SP-DOCS:END -->", block,
-                 txt, flags=re.S)
-    RESOURCES.write_text(new, encoding="utf-8")
+                f'<span>{html.escape(e["title"])}</span>'
+                f'<span class="type">{e["type"]} ↓</span></a>')
+    rows.append("          <!-- SP-DOCS:END -->")
+    block = "\n".join(rows)
+    txt = RESOURCES.read_text(encoding="utf-8")
+    txt = re.sub(r"<!-- SP-DOCS:START -->.*?<!-- SP-DOCS:END -->", block, txt, flags=re.S)
+    RESOURCES.write_text(txt, encoding="utf-8")
 
 
 def update_sitemap(entries):
@@ -180,20 +180,18 @@ def update_sitemap(entries):
     txt = re.sub(r"\n\s*<url><loc>[^<]*/docs/[^<]*</loc>[^\n]*</url>", "", txt)
     lines = "".join(
         f'  <url><loc>{SITE_URL}/docs/{e["file"]}</loc><priority>0.5</priority></url>\n'
-        for e in entries
-    )
-    txt = txt.replace("</urlset>", lines + "</urlset>")
-    SITEMAP.write_text(txt, encoding="utf-8")
+        for e in entries)
+    SITEMAP.write_text(txt.replace("</urlset>", lines + "</urlset>"), encoding="utf-8")
 
 
-def update_llms(entries):
+def update_llms(entries, order):
     if not LLMS.exists():
         return
+    block = "## Documents\n"
+    for section, docs in grouped(entries, order):
+        for e in docs:
+            block += f'- [{e["title"]}]({SITE_URL}/docs/{e["file"]}) ({section}): {e["type"]} download.\n'
     txt = LLMS.read_text(encoding="utf-8")
-    block = "## Documents\n" + "".join(
-        f'- [{e["title"]}]({SITE_URL}/docs/{e["file"]}): {e["type"]} download.\n'
-        for e in entries
-    )
     if "## Documents\n" in txt:
         txt = re.sub(r"## Documents\n(?:- .*\n)*", block, txt)
     else:

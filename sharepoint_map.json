@@ -1,0 +1,22 @@
+{
+  "_comment": "Maps SharePoint document file names -> where they appear on the site. Only files listed here are published; anything else in the library is ignored. 'section' groups them under a heading on the Resources page; 'title' is the label shown. Edit this to add/rename/move documents.",
+  "_section_order": [
+    "Tax & Contribution Tables",
+    "Retirement & Social Security",
+    "Planning Insights",
+    "Business & Wealth Strategies",
+    "Charitable & Estate Giving"
+  ],
+  "documents": {
+    "PCWM - 2024 Tax and Contribution Tables v.03.2026.pdf": { "section": "Tax & Contribution Tables", "title": "2024 Tax & Contribution Tables" },
+    "PCWM - 2025 Tax and Contribution Tables v.03.2026.pdf": { "section": "Tax & Contribution Tables", "title": "2025 Tax & Contribution Tables" },
+    "PCWM - 2026 Tax and Contribution Tables v.03.2026.pdf": { "section": "Tax & Contribution Tables", "title": "2026 Tax & Contribution Tables" },
+    "PCWM - PA RETIREMENT ACCOUNT PLANNING - v06.2026.pdf": { "section": "Retirement & Social Security", "title": "PA Retirement Account Planning" },
+    "PCWM - How Social Security Really Works for Affluent Families v06.26.pdf": { "section": "Retirement & Social Security", "title": "How Social Security Really Works for Affluent Families" },
+    "PCWM - HOW INTEGRATED PLANNING ACTUALLY HAPPENS v05.2026.pdf": { "section": "Planning Insights", "title": "How Integrated Planning Actually Happens" },
+    "PCWM - HOW INTEGRATED PLANNING OCCURS v08.2026.pdf": { "section": "Planning Insights", "title": "How Integrated Planning Occurs" },
+    "PCWM - Helping Clients Buy a Business v11.2025.pdf": { "section": "Business & Wealth Strategies", "title": "Helping Clients Buy a Business" },
+    "PCWM - SECURITIES BASED LENDING v09.2026.pdf": { "section": "Business & Wealth Strategies", "title": "Securities-Based Lending" },
+    "PCWM - TALE OF FOUR DONORS v05.2026.pdf": { "section": "Charitable & Estate Giving", "title": "A Tale of Four Donors" }
+  }
+}
