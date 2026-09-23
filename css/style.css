@@ -823,7 +823,7 @@ a.card-sage.svc-cat .link-arrow { margin-top: auto; padding-top: 16px; }
   .footer-top { flex-direction: column; }
 }
 @media (max-width: 560px) {
-  .grid-3, .grid-4, .badges .container, .give-grid, .portal-grid,
+  .grid-3, .grid-4, .grid-2, .badges .container, .give-grid, .portal-grid,
   .login-grid, .team-grid, .life-grid, .svc-cards, .expect { grid-template-columns: 1fr; }
   body { font-size: 16px; }
 }
