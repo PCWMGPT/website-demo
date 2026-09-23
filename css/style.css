@@ -358,6 +358,8 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
 .footer-nav a:hover { color: var(--cream); }
 .footer-rule { height: 1px; background: rgba(236,231,221,0.08); margin: 40px 0 26px; }
 .footer-legal { font-size: 12.5px; color: #6f756a; line-height: 1.7; }
+.footer-credit { margin-top: 16px; font-size: 12px; letter-spacing: .05em; color: #6f756a; }
+.footer-credit strong { color: var(--sage); font-weight: 600; }
 
 /* =========================================================================
    ABOUT — Our Story
