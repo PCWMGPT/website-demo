@@ -78,6 +78,119 @@
     else if (slides.length === 1) { slides[0].classList.add('active'); }
   }
 
+  /* ---- Rolling carousel (Life Situations, etc.) ---- */
+  document.querySelectorAll('[data-roller]').forEach(function (roller) {
+    var viewport = roller.querySelector('.roller-viewport');
+    var track = roller.querySelector('.roller-track');
+    var cards = Array.prototype.slice.call(track.querySelectorAll('.life-card'));
+    var prevBtn = roller.querySelector('.roller-arrow.prev');
+    var nextBtn = roller.querySelector('.roller-arrow.next');
+    var dotsWrap = roller.querySelector('.roller-dots');
+    if (!track || cards.length === 0) return;
+
+    var index = 0, perView = 1, maxIndex = 0, step = 0, timer = null;
+
+    function measure() {
+      var cardW = cards[0].getBoundingClientRect().width;
+      var gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || '18') || 18;
+      step = cardW + gap;
+      perView = Math.max(1, Math.round(viewport.clientWidth / step));
+      maxIndex = Math.max(0, cards.length - perView);
+      if (index > maxIndex) index = maxIndex;
+      buildDots();
+      render();
+    }
+
+    function buildDots() {
+      if (!dotsWrap) return;
+      dotsWrap.innerHTML = '';
+      for (var i = 0; i <= maxIndex; i++) {
+        (function (i) {
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+          b.addEventListener('click', function () { index = i; render(); restart(); });
+          dotsWrap.appendChild(b);
+        })(i);
+      }
+    }
+
+    function render() {
+      track.style.transform = 'translateX(' + (-index * step) + 'px)';
+      if (prevBtn) prevBtn.disabled = index <= 0;
+      if (nextBtn) nextBtn.disabled = index >= maxIndex;
+      if (dotsWrap) {
+        Array.prototype.forEach.call(dotsWrap.children, function (d, n) {
+          d.classList.toggle('active', n === index);
+        });
+      }
+    }
+
+    function go(i) { index = Math.max(0, Math.min(maxIndex, i)); render(); }
+    function advance() { index = index >= maxIndex ? 0 : index + 1; render(); }
+    function start() { stop(); if (maxIndex > 0) timer = setInterval(advance, 5000); }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    function restart() { start(); }
+
+    if (nextBtn) nextBtn.addEventListener('click', function () { go(index + 1); restart(); });
+    if (prevBtn) prevBtn.addEventListener('click', function () { go(index - 1); restart(); });
+    roller.addEventListener('mouseenter', stop);
+    roller.addEventListener('mouseleave', start);
+
+    var rt;
+    window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(measure, 150); }, { passive: true });
+
+    measure();
+    start();
+  });
+
+  /* ---- Life-situation detail modal ---- */
+  (function () {
+    var modal = document.getElementById('lifeModal');
+    if (!modal) return;
+    var content = modal.querySelector('.life-modal-content');
+    var box = modal.querySelector('.life-modal-box');
+    var lastFocus = null;
+
+    function open(card) {
+      var h4 = card.querySelector('h4');
+      var detail = card.querySelector('.life-detail');
+      if (!detail) return;
+      content.innerHTML = '';
+      if (h4) {
+        var title = h4.cloneNode(true);
+        title.id = 'lifeModalTitle';
+        content.appendChild(title);
+      }
+      var clone = detail.cloneNode(true);
+      clone.removeAttribute('hidden');
+      content.appendChild(clone);
+      lastFocus = document.activeElement;
+      modal.hidden = false;
+      document.body.classList.add('modal-open');
+      box.setAttribute('tabindex', '-1');
+      box.focus();
+    }
+    function close() {
+      modal.hidden = true;
+      document.body.classList.remove('modal-open');
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    document.querySelectorAll('.life-card').forEach(function (card) {
+      card.addEventListener('click', function () { open(card); });
+      card.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(card); }
+      });
+    });
+    modal.querySelectorAll('[data-close]').forEach(function (el) {
+      el.addEventListener('click', close);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !modal.hidden) close();
+    });
+  })();
+
   /* ---- FAQ accordion ---- */
   document.querySelectorAll('.faq-item').forEach(function (item) {
     var q = item.querySelector('.faq-q');

@@ -439,9 +439,68 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
   border-radius: 6px;
   padding: 30px 26px 32px;
   box-shadow: 0 10px 26px rgba(0,0,0,0.20);
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .25s var(--ease), border-color .25s var(--ease), box-shadow .25s var(--ease);
 }
+.life-card:hover, .life-card:focus-visible { transform: translateY(-4px); border-color: var(--sage); box-shadow: 0 18px 40px rgba(0,0,0,0.30); outline: none; }
 .life-card h4 { font-size: 15.5px; color: var(--cream); margin-bottom: 13px; font-weight: 600; line-height: 1.35; }
-.life-card p  { font-size: 13.5px; color: var(--sage-soft); line-height: 1.65; }
+.life-teaser  { font-size: 13.5px; color: var(--sage-soft); line-height: 1.65; margin-bottom: 16px; }
+.life-more { margin-top: auto; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: var(--sage); opacity: .55; transform: translateY(0); transition: opacity .25s var(--ease); }
+.life-card:hover .life-more, .life-card:focus-visible .life-more { opacity: 1; }
+
+/* life-situation detail modal */
+.life-modal { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; padding: 24px; }
+.life-modal[hidden] { display: none; }
+.life-modal-backdrop { position: absolute; inset: 0; background: rgba(10,12,9,0.72); backdrop-filter: blur(4px); }
+.life-modal-box {
+  position: relative; z-index: 1; width: 100%; max-width: 640px; max-height: 86vh; overflow-y: auto;
+  background: var(--panel); border: 1px solid var(--line); border-top: 3px solid var(--sage);
+  border-radius: 8px; padding: 40px 40px 36px; box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+}
+.life-modal-close { position: absolute; top: 14px; right: 16px; background: none; border: 0; color: var(--sage-soft); font-size: 30px; line-height: 1; cursor: pointer; transition: color .2s var(--ease); }
+.life-modal-close:hover { color: var(--sage); }
+.life-modal-content h4 { font-size: 21px; color: var(--cream); margin: 0 32px 18px 0; font-weight: 600; line-height: 1.3; }
+.life-modal-content .life-detail p { font-size: 15px; color: var(--body); line-height: 1.7; margin: 0 0 14px; }
+.life-modal-content .life-detail ul { list-style: none; margin: 0 0 16px; padding: 0; }
+.life-modal-content .life-detail li { position: relative; padding: 7px 0 7px 22px; font-size: 14.5px; color: var(--body); line-height: 1.55; }
+.life-modal-content .life-detail li::before { content: ''; position: absolute; left: 2px; top: 15px; width: 6px; height: 6px; border-radius: 50%; background: var(--sage); }
+.life-modal-content .life-quote { font-style: italic; color: var(--sage); font-size: 16px; padding: 4px 0 4px 16px; border-left: 2px solid var(--sage); margin: 0 0 16px; }
+.life-modal-content .life-cta { margin: 20px 0 0; }
+body.modal-open { overflow: hidden; }
+@media (max-width: 720px) { .life-modal-box { padding: 34px 24px 28px; } .life-modal-content h4 { font-size: 19px; } }
+
+/* Rolling carousel (used for Life Situations) — mirrors the hero "roll" */
+.roller { position: relative; max-width: 1080px; margin: 0 auto; padding: 0 46px; }
+.roller-viewport { overflow: hidden; }
+.roller-track { display: flex; gap: 18px; transition: transform .55s var(--ease); will-change: transform; }
+.roller-track > .life-card { flex: 0 0 calc((100% - 36px) / 3); }
+.roller-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid var(--line); background: rgba(0,0,0,0.35); color: var(--cream);
+  font-size: 22px; line-height: 1; cursor: pointer; z-index: 2;
+  transition: background .2s var(--ease), color .2s var(--ease), opacity .2s var(--ease);
+}
+.roller-arrow:hover { background: rgba(0,0,0,0.6); color: var(--sage); }
+.roller-arrow[disabled] { opacity: .3; cursor: default; }
+.roller-arrow.prev { left: 0; }
+.roller-arrow.next { right: 0; }
+.roller-dots { display: flex; gap: 9px; justify-content: center; margin-top: 24px; }
+.roller-dots button { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%; background: rgba(255,255,255,0.28); cursor: pointer; transition: background .2s var(--ease), transform .2s var(--ease); }
+.roller-dots button.active { background: var(--sage); transform: scale(1.25); }
+@media (max-width: 980px) { .roller-track > .life-card { flex-basis: calc((100% - 18px) / 2); } }
+@media (max-width: 720px) { .roller { padding: 0 38px; } .roller-track > .life-card { flex-basis: 100%; } .life-more { opacity: 1; transform: none; } }
+
+/* single fit card, centered */
+.fit-single { max-width: 820px; margin: 0 auto; }
+
+/* clickable "Services" parent label in the nav */
+.nav-item > span > .nav-parent { color: inherit; opacity: 1; text-decoration: none; letter-spacing: inherit; }
+.nav-item:hover > span > .nav-parent, .nav-item > span > .nav-parent:hover { color: var(--sage); }
+.nav-item.active > span, .nav-item.active > span > .nav-parent { color: var(--sage); opacity: 1; }
 
 /* who-we-serve: always-visible, airy panels (no click to expand) */
 .serve-block { max-width: 900px; margin: 0 auto; }
