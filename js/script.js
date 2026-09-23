@@ -211,6 +211,16 @@
       }
     });
   });
+  // expand any faq-item that starts open (and keep it correct after fonts load / resize)
+  function openFaqInit() {
+    document.querySelectorAll('.faq-item.open .faq-a').forEach(function (a) {
+      a.style.maxHeight = a.scrollHeight + 'px';
+    });
+  }
+  openFaqInit();
+  window.addEventListener('load', openFaqInit);
+  var faqRt;
+  window.addEventListener('resize', function () { clearTimeout(faqRt); faqRt = setTimeout(openFaqInit, 150); }, { passive: true });
 
   /* ---- Contact form (front-end only; wire to your provider/Wix) ---- */
   var form = document.querySelector('.contact-form');

@@ -781,6 +781,10 @@ a.card-sage.svc-cat .link-arrow { margin-top: auto; padding-top: 16px; }
 .faq-a ul.pill-list li { position: relative; padding: 7px 0 7px 22px; color: var(--body); font-size: 15px; line-height: 1.55; }
 .faq-a ul.pill-list li::before { content: '—'; position: absolute; left: 0; color: var(--sage); }
 .faq-a ul.pill-list li strong { color: var(--cream); font-weight: 600; }
+.faq-a ol.proc-steps { list-style: decimal; margin: 6px 0 14px; padding-left: 22px; }
+.faq-a ol.proc-steps li { padding: 6px 0; color: var(--body); font-size: 15px; line-height: 1.6; }
+.faq-a ol.proc-steps li::marker { color: var(--sage); font-weight: 700; }
+.faq-a ol.proc-steps li strong { color: var(--cream); font-weight: 600; }
 .faq-a .mini-label { color: var(--sage); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; margin: 16px 0 2px; font-weight: 500; }
 
 /* =========================================================================
