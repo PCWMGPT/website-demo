@@ -564,6 +564,33 @@ a.card-sage.svc-cat .link-arrow { margin-top: auto; padding-top: 16px; }
 .faq-a .proc-flow { text-align: center; font-size: 15.5px; line-height: 2.1; color: var(--sage-soft); margin: 8px 0 16px; }
 .faq-a .proc-flow strong { color: var(--cream); font-weight: 600; }
 
+/* Centered pull-statement framed by thin rules (services "one visual system") */
+.statement {
+  max-width: 780px; margin: 52px auto 0; padding: 32px 0;
+  border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft);
+  text-align: center;
+}
+.statement-lead {
+  font-size: clamp(22px, 2.6vw, 28px); font-weight: 700; color: var(--cream);
+  line-height: 1.28; letter-spacing: -0.01em; margin: 0 0 14px;
+}
+.statement-sub {
+  font-size: 16px; color: var(--sage-soft); line-height: 1.7; font-weight: 300;
+  max-width: 640px; margin: 0 auto;
+}
+
+/* Standalone shaded callout (mirrors .article .callout, usable outside articles) */
+.callout {
+  background: rgba(138,156,127,0.1);
+  border: 1px solid rgba(138,156,127,0.28);
+  border-radius: 6px;
+  padding: 22px 26px;
+  margin: 28px 0;
+  color: var(--sage-soft);
+  font-size: 16px; line-height: 1.65;
+}
+.callout strong { color: var(--cream); font-weight: 600; }
+
 /* fit / not-a-fit cards — gentle color to break the monotone */
 .fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
 .fit-card { border-radius: 6px; padding: 36px 34px; box-shadow: 0 12px 30px rgba(0,0,0,0.26); }
