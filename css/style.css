@@ -553,12 +553,16 @@ a.card-sage.svc-cat .link-arrow { margin-top: auto; padding-top: 16px; }
 .trait-list li strong { color: var(--cream); font-weight: 600; }
 
 .serve-quote {
-  margin: 28px 0 0; padding-top: 24px; border-top: 1px solid var(--line-soft);
-  color: var(--cream); font-style: italic; font-size: 17.5px; font-weight: 600;
-  line-height: 1.6; text-align: center;
+  max-width: 720px; margin: 36px auto 0; padding: 24px 30px;
+  background: rgba(138,156,127,0.12); border-radius: 10px;
+  color: var(--cream); font-style: italic; font-size: 19px; font-weight: 600;
+  line-height: 1.55; text-align: center;
 }
 /* prominent section sub-heading (bolder/bigger than the light lead beneath it) */
 .sec-title { font-weight: 700; font-size: clamp(23px, 2.8vw, 30px); color: var(--cream); letter-spacing: -0.01em; line-height: 1.2; margin-bottom: 10px; }
+/* named process stages (replaces the numbered CFP list) */
+.faq-a .proc-flow { text-align: center; font-size: 15.5px; line-height: 2.1; color: var(--sage-soft); margin: 8px 0 16px; }
+.faq-a .proc-flow strong { color: var(--cream); font-weight: 600; }
 
 /* fit / not-a-fit cards — gentle color to break the monotone */
 .fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
