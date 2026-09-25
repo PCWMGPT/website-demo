@@ -110,6 +110,21 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
   transition: background .25s var(--ease), transform .25s var(--ease);
 }
 .btn:hover { background: var(--sage); transform: translateY(-1px); }
+/* Secondary/outline button — same shape as .btn, different treatment */
+.btn-outline {
+  display: inline-block;
+  background: transparent;
+  color: var(--sage-soft);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  padding: 17px 40px;
+  border: 1px solid var(--sage-2);
+  border-radius: var(--radius);
+  transition: background .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease), transform .25s var(--ease);
+}
+.btn-outline:hover { background: var(--sage-2); color: #1d2419; border-color: var(--sage-2); transform: translateY(-1px); }
 
 .link-arrow {
   display: inline-block;
@@ -379,10 +394,11 @@ h1, h2, h3, h4 { color: var(--cream); font-weight: 600; line-height: 1.15; lette
 .belief-lead .italic { font-style: italic; font-weight: 700; font-size: clamp(26px,3.4vw,38px); color: var(--cream); }
 
 /* team grid */
-.team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px 28px; margin-top: 46px; }
+.team-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 40px 22px; margin-top: 46px; }
 .team-member { text-align: center; }
 .team-photo {
-  width: 184px; height: 184px; border-radius: 50%;
+  width: 100%; max-width: 200px; aspect-ratio: 1 / 1; height: auto;
+  border-radius: 50%;
   margin: 0 auto 16px;
   background: var(--panel); overflow: hidden;
   display: flex; align-items: center; justify-content: center;
