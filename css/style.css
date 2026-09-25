@@ -585,6 +585,24 @@ a.card-sage.svc-cat .link-arrow { margin-top: auto; padding-top: 16px; }
   max-width: 720px; margin: 0 auto;
 }
 
+/* Service-subpage "When this may be a good fit" heading (consistent on all three pages) */
+.fit-heading {
+  margin: 60px 0 20px; padding-top: 36px;
+  border-top: 1px solid var(--line-soft);
+  font-weight: 700; font-size: clamp(23px, 2.9vw, 31px);
+  color: var(--cream); letter-spacing: -0.01em; line-height: 1.2;
+}
+/* Chapter-style prev/next navigation shared across the three service pages */
+.chapter-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 16px 28px; flex-wrap: wrap;
+  max-width: 840px; margin: 56px auto 0;
+  padding-top: 28px; border-top: 1px solid var(--line-soft);
+}
+.chapter-nav a { font-size: 12.5px; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; }
+/* "Explore Related ... Topics" line at the foot of each service page's copy */
+.svc-copy .related-topics { margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--line-soft); font-size: 15px; color: var(--dim); line-height: 1.9; }
+
 /* Standalone shaded callout (mirrors .article .callout, usable outside articles) */
 .callout {
   background: rgba(138,156,127,0.1);
