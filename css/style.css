@@ -512,11 +512,11 @@ a.card-sage.svc-cat .link-arrow { margin-top: auto; padding-top: 16px; }
 .svc-list { list-style: none; margin: 8px 0 22px; padding: 0; max-width: 780px; }
 .svc-list li { position: relative; padding: 9px 0 9px 24px; color: var(--body); font-size: 15px; line-height: 1.6; border-top: 1px solid var(--line-soft); }
 .svc-list li:first-child { border-top: none; }
-.svc-list li::before { content: ''; position: absolute; left: 3px; top: 18px; width: 6px; height: 6px; border-radius: 50%; background: var(--sage); }
+.svc-list li::before { content: '—'; position: absolute; left: 0; top: 9px; color: var(--sage); font-weight: 400; line-height: 1; }
 @media (min-width: 760px) {
   .svc-list.two-col { max-width: 920px; columns: 2; column-gap: 46px; }
   .svc-list.two-col li { border-top: none; padding: 6px 0 6px 24px; break-inside: avoid; }
-  .svc-list.two-col li::before { top: 15px; }
+  .svc-list.two-col li::before { top: 6px; }
 }
 
 /* clickable "Services" parent label in the nav */
