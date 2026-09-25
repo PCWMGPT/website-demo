@@ -554,9 +554,11 @@ a.card-sage.svc-cat .link-arrow { margin-top: auto; padding-top: 16px; }
 
 .serve-quote {
   margin: 28px 0 0; padding-top: 24px; border-top: 1px solid var(--line-soft);
-  color: var(--sage-soft); font-style: italic; font-size: 15.5px;
-  line-height: 1.65; text-align: center;
+  color: var(--cream); font-style: italic; font-size: 17.5px; font-weight: 600;
+  line-height: 1.6; text-align: center;
 }
+/* prominent section sub-heading (bolder/bigger than the light lead beneath it) */
+.sec-title { font-weight: 700; font-size: clamp(23px, 2.8vw, 30px); color: var(--cream); letter-spacing: -0.01em; line-height: 1.2; margin-bottom: 10px; }
 
 /* fit / not-a-fit cards — gentle color to break the monotone */
 .fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
