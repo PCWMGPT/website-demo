@@ -575,6 +575,8 @@ a.card-sage.svc-cat .link-arrow { margin-top: auto; padding-top: 16px; }
   line-height: 1.28; letter-spacing: -0.01em; margin: 0 0 12px;
 }
 .statement-lead:last-child { margin-bottom: 0; }
+/* Registered-trademark mark: small and understated (Jost renders ® oversized) */
+.rmark { font-size: 0.52em; vertical-align: 0.32em; font-weight: 400; letter-spacing: 0; line-height: 0; }
 .statement-sub {
   font-size: 16px; color: var(--sage-soft); line-height: 1.7; font-weight: 300;
   max-width: 640px; margin: 0 auto;
