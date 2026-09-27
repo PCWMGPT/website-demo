@@ -1,0 +1,9 @@
+# Azure Functions (contact API) — local secrets & deps
+local.settings.json
+api/local.settings.json
+api/node_modules/
+node_modules/
+
+# OS / editor
+.DS_Store
+.vscode/

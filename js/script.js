@@ -222,14 +222,67 @@
   var faqRt;
   window.addEventListener('resize', function () { clearTimeout(faqRt); faqRt = setTimeout(openFaqInit, 150); }, { passive: true });
 
-  /* ---- Contact form (front-end only; wire to your provider/Wix) ---- */
+  /* ---- Contact form → POST /api/contact ---- */
   var form = document.querySelector('.contact-form');
   if (form) {
+    var renderedAt = Date.now();
+    var ERR = 'Something went wrong sending your message. Please email team@pointercreek.com or call +1-234-414-1014 and we’ll take care of you.';
+    var val = function (n) { var el = form.elements[n]; return el && el.value ? el.value.trim() : ''; };
+    var note = form.querySelector('.form-note');
+    var btn = form.querySelector('button[type="submit"]');
+
+    function show(msg, ok) {
+      if (!note) return;
+      note.style.display = 'block';
+      note.textContent = msg;
+      note.className = 'form-note ' + (ok ? 'is-ok' : 'is-err');
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var note = form.querySelector('.form-note');
-      if (note) { note.style.display = 'block'; note.textContent = 'Thank you — we’ll be in touch shortly.'; }
-      form.reset();
+
+      var data = {
+        name: val('name'),
+        email: val('email'),
+        phone: val('phone'),
+        prompt: val('prompt'),
+        message: val('message'),
+        company: (form.elements['company'] && form.elements['company'].value) || '',
+        elapsedMs: Date.now() - renderedAt,
+        page: location.pathname
+      };
+
+      if (!data.name || !data.email || !data.message) {
+        show('Please add your name, email, and a short message.', false);
+        return;
+      }
+
+      var label = btn ? btn.textContent : '';
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+        .then(function (r) {
+          return r.json().catch(function () { return {}; }).then(function (j) {
+            return { ok: r.ok, j: j };
+          });
+        })
+        .then(function (res) {
+          if (res.ok && res.j && res.j.ok) {
+            form.reset();
+            renderedAt = Date.now();
+            show('Thank you — a member of our team will be in touch.', true);
+          } else {
+            show(ERR, false);
+          }
+        })
+        .catch(function () { show(ERR, false); })
+        .then(function () {
+          if (btn) { btn.disabled = false; btn.textContent = label; }
+        });
     });
   }
 })();

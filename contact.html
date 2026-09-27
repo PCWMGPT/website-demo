@@ -84,6 +84,9 @@
       </div>
 
       <form class="contact-form" novalidate>
+        <div aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;">
+          <label>Company<input type="text" name="company" tabindex="-1" autocomplete="off"></label>
+        </div>
         <div class="form-row">
           <input type="text" name="name" placeholder="Name" required>
           <input type="email" name="email" placeholder="Email" required>
@@ -108,6 +111,7 @@
           <button type="submit" class="btn">Submit Your Request</button>
           <p class="form-note"></p>
         </div>
+        <p class="form-privacy" style="margin-top:12px;font-size:13px;color:var(--dim);">Please don’t include account numbers or other sensitive financial information.</p>
       </form>
 
       <p class="contact-line">(234) 414-1014 · <a class="inline-link" href="mailto:team@pointercreek.com">team@pointercreek.com</a> · Canfield, Ohio</p>

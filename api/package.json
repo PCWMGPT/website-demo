@@ -1,0 +1,10 @@
+{
+  "name": "pcwm-contact-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Azure Functions API for the Pointer Creek contact form (Microsoft Graph sendMail).",
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "@azure/identity": "^4.5.0"
+  }
+}
