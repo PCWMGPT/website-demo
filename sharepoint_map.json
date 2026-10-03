@@ -8,15 +8,33 @@
     "Charitable & Estate Giving"
   ],
   "documents": {
-    "PCWM - 2024 Tax and Contribution Tables v.03.2026.pdf": { "section": "Tax & Contribution Tables", "title": "2024 Tax & Contribution Tables" },
-    "PCWM - 2025 Tax and Contribution Tables v.03.2026.pdf": { "section": "Tax & Contribution Tables", "title": "2025 Tax & Contribution Tables" },
-    "PCWM - 2026 Tax and Contribution Tables v.03.2026.pdf": { "section": "Tax & Contribution Tables", "title": "2026 Tax & Contribution Tables" },
-    "PCWM - PA RETIREMENT ACCOUNT PLANNING - v06.2026.pdf": { "section": "Retirement & Social Security", "title": "PA Retirement Account Planning" },
-    "PCWM - How Social Security Really Works for Affluent Families v06.26.pdf": { "section": "Retirement & Social Security", "title": "How Social Security Really Works for Affluent Families" },
-    "PCWM - HOW INTEGRATED PLANNING ACTUALLY HAPPENS v05.2026.pdf": { "section": "Planning Insights", "title": "How Integrated Planning Actually Happens" },
-    "PCWM - HOW INTEGRATED PLANNING OCCURS v08.2026.pdf": { "section": "Planning Insights", "title": "How Integrated Planning Occurs" },
-    "PCWM - Helping Clients Buy a Business v11.2025.pdf": { "section": "Business & Wealth Strategies", "title": "Helping Clients Buy a Business" },
-    "PCWM - SECURITIES BASED LENDING v09.2026.pdf": { "section": "Business & Wealth Strategies", "title": "Securities-Based Lending" },
-    "PCWM - TALE OF FOUR DONORS v05.2026.pdf": { "section": "Charitable & Estate Giving", "title": "A Tale of Four Donors" }
+    "PCWM - 2026 Tax and Contribution Tables v.03.2026.pdf": {
+      "section": "Tax & Contribution Tables",
+      "title": "2026 Tax & Contribution Tables"
+    },
+    "PCWM - PA RETIREMENT ACCOUNT PLANNING - v06.2026.pdf": {
+      "section": "Retirement & Social Security",
+      "title": "PA Retirement Account Planning"
+    },
+    "PCWM - How Social Security Really Works for Affluent Families v06.26.pdf": {
+      "section": "Retirement & Social Security",
+      "title": "How Social Security Really Works for Affluent Families"
+    },
+    "PCWM - HOW INTEGRATED PLANNING OCCURS v08.2026.pdf": {
+      "section": "Planning Insights",
+      "title": "How Integrated Planning Occurs"
+    },
+    "PCWM - Helping Clients Buy a Business v11.2025.pdf": {
+      "section": "Business & Wealth Strategies",
+      "title": "Helping Clients Buy a Business"
+    },
+    "PCWM - SECURITIES BASED LENDING v09.2026.pdf": {
+      "section": "Business & Wealth Strategies",
+      "title": "Securities-Based Lending"
+    },
+    "PCWM - TALE OF FOUR DONORS v05.2026.pdf": {
+      "section": "Charitable & Estate Giving",
+      "title": "A Tale of Four Donors"
+    }
   }
 }
