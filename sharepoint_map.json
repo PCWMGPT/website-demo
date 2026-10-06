@@ -2,10 +2,11 @@
   "_comment": "Maps SharePoint document file names -> where they appear on the site. Only files listed here are published; anything else in the library is ignored. 'section' groups them under a heading on the Resources page; 'title' is the label shown. Edit this to add/rename/move documents.",
   "_section_order": [
     "Tax & Contribution Tables",
-    "Retirement & Social Security",
+    "Retirement Planning",
     "Planning Insights",
     "Business & Wealth Strategies",
-    "Charitable & Estate Giving"
+    "Charitable Planning",
+    "Estate Planning"
   ],
   "documents": {
     "PCWM - 2026 Tax and Contribution Tables v.03.2026.pdf": {
@@ -13,11 +14,11 @@
       "title": "2026 Tax & Contribution Tables"
     },
     "PCWM - PA RETIREMENT ACCOUNT PLANNING - v06.2026.pdf": {
-      "section": "Retirement & Social Security",
+      "section": "Retirement Planning",
       "title": "PA Retirement Account Planning"
     },
     "PCWM - How Social Security Really Works for Affluent Families v06.26.pdf": {
-      "section": "Retirement & Social Security",
+      "section": "Retirement Planning",
       "title": "How Social Security Really Works for Affluent Families"
     },
     "PCWM - HOW INTEGRATED PLANNING OCCURS v08.2026.pdf": {
@@ -33,7 +34,7 @@
       "title": "Securities-Based Lending"
     },
     "PCWM - TALE OF FOUR DONORS v05.2026.pdf": {
-      "section": "Charitable & Estate Giving",
+      "section": "Charitable Planning",
       "title": "A Tale of Four Donors"
     }
   }
