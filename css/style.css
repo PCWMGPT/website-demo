@@ -697,7 +697,7 @@ a.card-sage.svc-cat .link-arrow { margin-top: auto; padding-top: 16px; }
 .res-wrap { display: grid; grid-template-columns: 1.7fr 1fr; gap: 40px; max-width: 1080px; margin: 0 auto; }
 .res-docs { border-top: 1px solid var(--line); }
 .res-doc {
-  display: flex; justify-content: space-between; align-items: center;
+  display: flex; justify-content: space-between; align-items: flex-start;
   padding: 20px 6px;
   border-bottom: 1px solid var(--line);
   color: var(--body);
@@ -714,6 +714,13 @@ a.card-sage.svc-cat .link-arrow { margin-top: auto; padding-top: 16px; }
 .res-links li a:hover { color: var(--sage); }
 .res-calc a { color: var(--body); font-size: 15px; display: inline-block; padding-bottom: 14px; border-bottom: 1px solid var(--line); width: 100%; transition: color .2s var(--ease); }
 .res-calc a:hover { color: var(--sage); }
+
+/* Resource descriptions (muted, under each title) */
+.res-doc .doc-main { display: flex; flex-direction: column; gap: 5px; padding-right: 20px; }
+.res-doc .doc-desc, .res-calc .doc-desc { font-size: 13px; color: var(--dim); line-height: 1.5; font-weight: 300; }
+.res-doc .type { flex: none; white-space: nowrap; }
+.res-calc .doc-desc { margin-top: 6px; }
+
 
 /* =========================================================================
    CLIENT ACCESS — portal cards
